@@ -5,7 +5,7 @@ namespace rsspipes\sections;
 use rsspipes\rss\Feed;
 use rsspipes\rss\Item;
 
-class Rss extends Section
+class Atom extends Section
 {
     public $url;
     
@@ -27,14 +27,15 @@ class Rss extends Section
         }
         $feed->namespaces += $xml->getDocNamespaces();
         
-        foreach ($xml->channel->children() as $key => $element) {
-            if ($key === 'item') {
+        foreach ($xml->children() as $key => $element) {
+            if ($key === 'entry') {
                 $item = new Item;
                 
                 $children = (array) $element->children();
                 foreach ($children as $key => $value) {
                     $item->$key = is_array($value) ? array_map('strval', $value) : (string) $value;
                 }
+                $item->description = (string) $element->content;
                 
                 foreach ($element->children() as $childKey => $child) {
                     $attributes = [];
