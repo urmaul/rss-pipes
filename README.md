@@ -1,4 +1,4 @@
-# rss-pipes
+# Rss Pipes
 Rss feeds manipulating tool inspired by Yahoo Pipes.
 
 ## Usage
