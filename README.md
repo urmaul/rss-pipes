@@ -1,5 +1,6 @@
 # Rss Pipes
-Rss feeds manipulating tool inspired by Yahoo Pipes.
+
+Rss feeds manipulating tool inspired by Yahoo Pipes. It has no pipes editing interface - you just configure them in `.yml` files and copy their urls to your reader.
 
 ## Usage
 
