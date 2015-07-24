@@ -23,8 +23,9 @@ class Atom extends Rss
         
         foreach ($xml->entry as $key => $element) {
             $item = new Item;
-            $item->setData($this->parseChildrenValues($element));
+            $item->guid = (string) $element->id;
             $item->description = (string) $element->content;
+            $item->setData($this->parseChildrenValues($element));
             $item->attributes += $this->parseAllAttributes($element);
 
             $feed->items[] = $item;
