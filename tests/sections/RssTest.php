@@ -86,7 +86,9 @@ XML;
         $this->assertSame('Онлайн flash игры играть бесплатно и без регистрации', $feed->metadata['description']);
         $this->assertCount(2, $feed->items);
         $this->assertSame('Денежные создатели', $feed->items[0]->title);
+        $this->assertSame('http://www.qwasd.ru/business/money-makers/', $feed->items[0]->link);
         $this->assertSame('Микрики', $feed->items[1]->title);
+        $this->assertSame('http://www.qwasd.ru/puzzles/micrics/', $feed->items[1]->link);
         $this->assertSame('<div style="min-height: 90px;">
 <a href="http://www.qwasd.ru/puzzles/micrics/"><img src="http://cf.qwasd.ru/t/micrics.png" style="float:left;" width="120" height="90" alt="Микрики" /></a>
 <div style="margin-left: 128px">

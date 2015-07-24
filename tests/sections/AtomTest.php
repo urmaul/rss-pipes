@@ -73,7 +73,9 @@ XML;
         $this->assertSame('IT подкаст выходного дня', $feed->metadata['description']);
         $this->assertCount(2, $feed->items);
         $this->assertSame('Темы для 453', $feed->items[0]->title);
+        $this->assertSame('http://www.radio-t.com/p/2015/07/14/prep-453/', $feed->items[0]->link);
         $this->assertSame('Радио-Т 452', $feed->items[1]->title);
+        $this->assertSame('http://www.radio-t.com/p/2015/07/11/podcast-452/', $feed->items[1]->link);
         $this->assertSame('<p><img src="http://www.radio-t.com/images/radio-t/rt452.jpg" alt="" /></p>
 
 <ul>

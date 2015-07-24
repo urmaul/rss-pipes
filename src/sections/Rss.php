@@ -27,31 +27,53 @@ class Rss extends Section
         }
         $feed->namespaces += $xml->getDocNamespaces();
         
-        foreach ($xml->channel->children() as $key => $element) {
-            if ($key === 'item') {
-                $item = new Item;
+        $metadata = $this->parseChildrenValues($xml->channel);
+        unset($metadata['item']);
+        
+        $feed->metadata += $metadata;
+        
+        foreach ($xml->channel->item as $key => $element) {
+            $item = new Item;
+            $item->setData($this->parseChildrenValues($element));
+            $item->attributes += $this->parseAllAttributes($element);
+
+            $feed->items[] = $item;
+        }
+    }
+    
+    public function parseChildrenValues($element)
+    {
+        $children = (array) $element->children();
+        $values = [];
+        foreach ($children as $key => $value) {
+            if (is_object($value) && $value->count()) {
+                $value = $this->parseChildrenValues($value);
                 
-                $children = (array) $element->children();
-                foreach ($children as $key => $value) {
-                    $item->$key = is_array($value) ? array_map('strval', $value) : (string) $value;
-                }
-                
-                foreach ($element->children() as $childKey => $child) {
-                    $attributes = [];
-                    foreach ($child->attributes() as $key => $value) {
-                        $attributes[$key] = (string) $value;
-                    }
-                    if ($attributes) {
-                        $item->attributes[$childKey] = $attributes;
-                    }
-                }
-                
-                $feed->items[] = $item;
+            } elseif (is_array($value)) {
+                $value = array_map('strval', $value);
                 
             } else {
-                $value = $element->children() ? (array) $element->children() : (string) $element;
-                $feed->metadata += [$key => $value];
+                $value = (string) $value;
+            }
+            
+            $values[$key] = $value;
+        }
+        
+        return $values;
+    }
+    
+    public function parseAllAttributes($element)
+    {
+        $attributes = [];
+        foreach ($element->children() as $childKey => $child) {
+            $attributes = [];
+            foreach ($child->attributes() as $key => $value) {
+                $attributes[$key] = (string) $value;
+            }
+            if ($attributes) {
+                $attributes[$childKey] = $attributes;
             }
         }
+        return $attributes;
     }
 }

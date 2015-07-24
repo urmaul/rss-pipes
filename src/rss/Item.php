@@ -25,6 +25,14 @@ class Item
         return $data;
     }
     
+    public function setData($data)
+    {
+        foreach (['guid', 'pubDate', 'title', 'link', 'description', 'comments'] as $name) {
+            if (isset($data[$name]))
+                $this->$name = $data[$name];
+        }
+    }
+    
     /**
      * 
      * @param SimpleXMLElement $xml
