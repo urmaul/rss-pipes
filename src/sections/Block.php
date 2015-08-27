@@ -21,6 +21,7 @@ class Block extends Section
             $feed->items = array_filter($feed->items, function (Item $item) use ($field, $rules) {
                 return !$this->matchRules($item->$field, $rules);
             });
+            $feed->items = array_values($feed->items);
         }
     }
     

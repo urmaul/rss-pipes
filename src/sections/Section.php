@@ -34,6 +34,9 @@ abstract class Section
         $class = __NAMESPACE__ . '\\' . ucfirst($config['type']);
         unset($config['type']);
 
+        if (!class_exists($class))
+            throw new Exception('Section does not exist: ' . $class);
+        
         $section = new $class();
         foreach ($config as $key => $val) {
             $section->$key = $val;
@@ -44,3 +47,7 @@ abstract class Section
         return $section;
     }
 }
+
+class Exception extends \Exception
+{}
+

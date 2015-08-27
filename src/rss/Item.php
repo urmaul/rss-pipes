@@ -16,6 +16,12 @@ class Item
     
     public $attributes = [];
     
+    public function __construct($data = null)
+    {
+        if ($data !== null)
+            $this->setData($data);
+    }
+    
     public function getData()
     {
         $data = [];
