@@ -19,6 +19,10 @@ class Pipe
         }
     }
     
+    /**
+     * 
+     * @return Feed
+     */
     public function run()
     {
         $feed = new Feed;
