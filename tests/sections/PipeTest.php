@@ -24,7 +24,7 @@ class PipeTest extends \PHPUnit_Framework_TestCase
         
         $section = new Pipe();
         
-        $stub = $this->getMockBuilder('rsspipes\Pipe')->getMock();
+        $stub = $this->getMockBuilder('rsspipes\Pipe')->disableOriginalConstructor()->getMock();
         $stub->method('run')->willReturn($feed2);
         $section->pipe = $stub;
         
