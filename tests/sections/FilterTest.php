@@ -26,4 +26,24 @@ class FilterTest extends \PHPUnit_Framework_TestCase
         $this->assertCount(1, $feed->items);
         $this->assertSame('bar', $feed->items[0]->title);
     }
+    
+    public function testRegexp()
+    {
+        $feed = new Feed();
+        $feed->items = [
+            new Item(['title' => 'foo bar']),
+            new Item(['title' => 'bar baz']),
+            new Item(['title' => 'foo baz']),
+        ];
+        
+        $this->assertCount(3, $feed->items);
+        
+        $section = new Filter();
+        $section->rules = ['title' => ['/^bar/']];
+        
+        $section->processFeed($feed);
+        
+        $this->assertCount(1, $feed->items);
+        $this->assertSame('bar baz', $feed->items[0]->title);
+    }
 }

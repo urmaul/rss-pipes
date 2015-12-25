@@ -2,8 +2,6 @@
 
 namespace rsspipes\rss;
 
-use SimpleXMLElement;
-
 use AntiMattr\Xml\XmlBuilder;
 
 class Feed
@@ -15,6 +13,23 @@ class Feed
      * @var Item[]
      */
     public $items = [];
+    
+    /**
+     * Returns feed contents as json string.
+     * @return string
+     */
+    public function asJson()
+    {
+        $data = $this->metadata;
+        
+        $items = [];
+        foreach ($this->items as $item) {
+            $items[] = $item->getData();
+        }
+        $data['items'] = $items;
+        
+        return json_encode($data, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+    }
     
     public function asXmlElement()
     {

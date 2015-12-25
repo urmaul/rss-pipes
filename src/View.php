@@ -11,7 +11,17 @@ abstract class View
         $controller = new \rsspipes\Controller($pipesDir, $allowPhp);
 
         if (isset($_GET['pipe'])) {
-            echo $controller->run($_GET['pipe'])->asXml();
+            $feed = $controller->run($_GET['pipe']);
+            
+            $format = isset($_GET['format']) ? $_GET['format'] : 'rss';
+            if ($format === 'json') {
+                header('Content-Type: application/json');
+                echo $feed->asJson();
+                
+            } else {
+                header('Content-Type: application/rss+xml');
+                echo $feed->asXml();
+            }
 
         } else {
             $links = array_map(function($name){

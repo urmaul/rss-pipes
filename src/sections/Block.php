@@ -52,6 +52,12 @@ class Block extends Section
 	 */
 	protected function matchRule($string, $rule)
 	{
+        if ($rule[0] === '/') {
+            $pregResult = @preg_match($rule, $string);
+            if ($pregResult !== false)
+                return $pregResult;
+        }
+        
 		return mb_stripos($string, $rule) !== false;
 	}
 }
