@@ -8,8 +8,7 @@ abstract class View
     {
         mb_internal_encoding('UTF-8');
 
-        $controller = new \rsspipes\Controller($pipesDir);
-        $controller->allowPhp = $allowPhp;
+        $controller = new \rsspipes\Controller($pipesDir, $allowPhp);
 
         if (isset($_GET['pipe'])) {
             echo $controller->run($_GET['pipe'])->asXml();
