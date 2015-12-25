@@ -4,11 +4,12 @@ namespace rsspipes;
 
 abstract class View
 {
-    public static function run($pipesDir)
+    public static function run($pipesDir, $allowPhp = false)
     {
         mb_internal_encoding('UTF-8');
 
         $controller = new \rsspipes\Controller($pipesDir);
+        $controller->allowPhp = $allowPhp;
 
         if (isset($_GET['pipe'])) {
             echo $controller->run($_GET['pipe'])->asXml();
