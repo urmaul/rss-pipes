@@ -15,11 +15,11 @@ abstract class View
             
             $format = isset($_GET['format']) ? $_GET['format'] : 'rss';
             if ($format === 'json') {
-                header('Content-Type: application/json');
+                header('Content-Type: application/json; charset=utf-8');
                 echo $feed->asJson();
                 
             } else {
-                header('Content-Type: application/rss+xml');
+                header('Content-Type: application/rss+xml; charset=utf-8');
                 echo $feed->asXml();
             }
 
