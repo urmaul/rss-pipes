@@ -4,7 +4,8 @@
     "authors": [
         {
             "name": "Bogdan Kolbik",
-            "email": "me@urmaul.com"
+            "email": "me@urmaul.com",
+            "homepage": "http://urmaul.com/"
         }
     ],
     "require": {
