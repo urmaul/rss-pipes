@@ -8,14 +8,21 @@ use rsspipes\rss\Item;
 class Rss extends Section
 {
     public $url;
+    public $showErrors = 1;
     
     /**
      * @param Feed $feed
      */
     public function processFeed($feed)
     {
-        $body = \HttpClient::from()->get($this->url);
-        $this->parseBody($body, $feed);
+        $http = new \HttpClient(); 
+        $body = $http->get($this->url);
+        if ($body !== false) {
+            $this->parseBody($body, $feed);
+            
+        } elseif ($this->showErrors) {
+            $feed->addItem(['title' => $http->lastError, 'link' => $this->url]);
+        }
     }
     
     public function parseBody($body, $feed)

@@ -76,4 +76,12 @@ class Feed
     {
         return $this->asXmlElement()->asXML();
     }
+    
+    public function addItem($item)
+    {
+        if (is_array($item))
+            $item = new Item($item);
+        
+        $this->items[] = $item;
+    }
 }

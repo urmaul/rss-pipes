@@ -97,4 +97,29 @@ XML;
 </div>
 </div>', $feed->items[1]->description);
     }
+    
+    public function testDownloadFailed()
+    {
+        $section = new Rss();
+        $section->url = 'invalid';
+        $feed = new Feed();
+        
+        $section->processFeed($feed);
+        
+        $this->assertCount(1, $feed->items);
+        $this->assertEquals('Could not resolve host: invalid', $feed->items[0]->title);
+        $this->assertEquals('invalid', $feed->items[0]->link);
+    }
+    
+    public function testDownloadFailedQuitet()
+    {
+        $section = new Rss();
+        $section->url = 'invalid';
+        $section->showErrors = 0;
+        $feed = new Feed();
+        
+        $section->processFeed($feed);
+        
+        $this->assertEmpty($feed->items);
+    }
 }
