@@ -1,5 +1,7 @@
 # Rss Pipes
 
+[![Build Status](https://travis-ci.org/urmaul/rss-pipes.svg)](https://travis-ci.org/urmaul/rss-pipes)
+
 Rss feeds manipulating tool inspired by Yahoo Pipes. It has no pipes editing interface - you just configure them in `.yml` files and copy their urls to your reader.
 
 ## Usage
