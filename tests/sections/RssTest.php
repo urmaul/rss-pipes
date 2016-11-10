@@ -107,7 +107,7 @@ XML;
         $section->processFeed($feed);
         
         $this->assertCount(1, $feed->items);
-        $this->assertStringMatchesFormat('Could%s resolve host: invalid', $feed->items[0]->title);
+        $this->assertStringMatchesFormat('Could%A resolve host: invalid', $feed->items[0]->title);
         $this->assertEquals('invalid', $feed->items[0]->link);
     }
     
