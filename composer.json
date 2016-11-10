@@ -19,6 +19,9 @@
     "require-dev": {
         "phpunit/phpunit": "~4.0"
     },
+    "suggest": {
+        "urmaul/rss-pipes-selector": "Allows to parse html pages to create rss feeds."
+    },
     "autoload": {
         "psr-4": {"rsspipes\\": "src/"}
     }
