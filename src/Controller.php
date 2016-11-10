@@ -42,7 +42,7 @@ class Controller
     {
         $filename = $this->pipesDir . '/' . $pipe;
         if (file_exists($filename . '.yml')) {
-            return Yaml::parse($filename . '.yml');
+            return Yaml::parse(file_get_contents($filename . '.yml'));
             
         } elseif ($this->allowPhp && file_exists($filename . '.php')) {
             return include ($filename . '.php');
