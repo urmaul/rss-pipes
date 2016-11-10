@@ -9,7 +9,6 @@
         }
     ],
     "require": {
-        "php": ">=5.4",
         "urmaul/httpclient": "~1.1.0",
         "dg/rss-php": "~1.1",
         "symfony/yaml": "~3.0",
