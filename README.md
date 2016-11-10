@@ -33,3 +33,49 @@ Then you create a `pipes` dir that contains your pipe configs. For example you c
 ```
 
 Opening `index.php?pipe=urmaul` you will see rss feed of urmaul.com blog without posts about Yii.
+
+## Available sections
+
+### Rss
+
+Parses rss feed.
+
+### Atom
+
+Parses atom feed.
+
+### Filter
+
+Keep only items that fulfill the condition.
+
+### Block
+
+Drop items that fulfill the condition.
+
+### Callback
+
+Proces feed or items using callbacks.
+
+### Replace
+
+Replaces substring inside attribute.
+
+Parameters:
+
+* **attribute** - attribute we want to replace substring in.
+* **search** - subtring we want to replace.
+* **replace** - subtring we want to replace with.
+
+Sample:
+
+```yaml
+-
+  type: replace
+  attribute: title
+  search: space
+  replace: spaaace
+```
+
+### Pipe
+
+Runs separate pipe and adds it's result to feed.

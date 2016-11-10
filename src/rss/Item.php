@@ -25,7 +25,7 @@ class Item
     public function getData()
     {
         $data = [];
-        foreach (['guid', 'pubDate', 'title', 'link', 'description', 'comments'] as $name) {
+        foreach (self::dataAttributes() as $name) {
             $data[$name] = $this->$name;
         }
         return $data;
@@ -33,7 +33,7 @@ class Item
     
     public function setData($data)
     {
-        foreach (['guid', 'pubDate', 'title', 'link', 'description', 'comments'] as $name) {
+        foreach (self::dataAttributes() as $name) {
             if (isset($data[$name]))
                 $this->$name = $data[$name];
         }
@@ -45,9 +45,14 @@ class Item
      */
     public function fillXmlElement($xml)
     {
-        foreach (['guid', 'pubDate', 'title', 'link', 'description', 'comments'] as $name) {
+        foreach (self::dataAttributes() as $name) {
             $this->addChild($xml, $name);
         }
+    }
+    
+    public static function dataAttributes()
+    {
+        return ['guid', 'pubDate', 'title', 'link', 'description', 'comments'];
     }
     
     /**

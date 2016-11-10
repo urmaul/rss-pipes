@@ -5,6 +5,9 @@ namespace rsspipes\sections;
 use rsspipes\rss\Feed;
 use rsspipes\rss\Item;
 
+/**
+ * Proces feed or items using callbacks.
+ */
 class Callback extends Section
 {
     /**

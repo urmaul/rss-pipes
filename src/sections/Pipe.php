@@ -5,6 +5,9 @@ namespace rsspipes\sections;
 use rsspipes\rss\Feed;
 use rsspipes\Pipe as RssPipe;
 
+/**
+ * Runs separate pipe and adds it's result to feed.
+ */
 class Pipe extends Section
 {
     public $config;

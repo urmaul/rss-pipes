@@ -6,6 +6,9 @@ use rsspipes\rss\Feed;
 use rsspipes\rss\Item;
 use rsspipes\sections\Pipe;
 
+/**
+ * Runs separate pipe and adds it's result to feed.
+ */
 class PipeTest extends \PHPUnit_Framework_TestCase
 {
     public function testWorks()

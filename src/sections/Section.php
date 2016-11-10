@@ -4,6 +4,8 @@ namespace rsspipes\sections;
 
 use rsspipes\rss\Feed;
 use rsspipes\rss\Item;
+use rsspipes\sections\exceptions\Exception;
+use rsspipes\sections\exceptions\InvalidConfigException;
 
 abstract class Section
 {
@@ -26,7 +28,7 @@ abstract class Section
      */
     public function processItem($item)
     {
-        throw new \Exception(__METHOD__ . 'shouldn`t be called.');
+        throw new Exception(__METHOD__ . 'shouldn`t be called.');
     }
     
     public static function create($config)
@@ -35,7 +37,7 @@ abstract class Section
         unset($config['type']);
 
         if (!class_exists($class))
-            throw new Exception('Section does not exist: ' . $class);
+            throw new InvalidConfigException('Section does not exist: ' . $class);
         
         $section = new $class();
         foreach ($config as $key => $val) {
@@ -47,7 +49,3 @@ abstract class Section
         return $section;
     }
 }
-
-class Exception extends \Exception
-{}
-

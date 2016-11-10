@@ -5,6 +5,9 @@ namespace rsspipes\sections;
 use rsspipes\rss\Feed;
 use rsspipes\rss\Item;
 
+/**
+ * Drop items that fulfill the condition.
+ */
 class Block extends Section
 {
     public $rules = [];

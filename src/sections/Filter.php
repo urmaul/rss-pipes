@@ -5,6 +5,9 @@ namespace rsspipes\sections;
 use rsspipes\rss\Feed;
 use rsspipes\rss\Item;
 
+/**
+ * Keep only items that fulfill the condition.
+ */
 class Filter extends Block
 {
     /**

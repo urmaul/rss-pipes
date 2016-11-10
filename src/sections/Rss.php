@@ -5,6 +5,9 @@ namespace rsspipes\sections;
 use rsspipes\rss\Feed;
 use rsspipes\rss\Item;
 
+/**
+ * Parses rss feed.
+ */
 class Rss extends Section
 {
     public $url;

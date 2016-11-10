@@ -12,7 +12,7 @@ class PipeTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
-     * @expectedException rsspipes\sections\Exception
+     * @expectedException rsspipes\sections\exceptions\InvalidConfigException
      */
     public function testInvalidSection()
     {

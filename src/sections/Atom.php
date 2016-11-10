@@ -5,6 +5,9 @@ namespace rsspipes\sections;
 use rsspipes\rss\Feed;
 use rsspipes\rss\Item;
 
+/**
+ * Parses atom feed.
+ */
 class Atom extends Rss
 {
     public function parseBody($body, $feed)

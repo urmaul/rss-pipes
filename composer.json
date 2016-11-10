@@ -14,7 +14,8 @@
         "dg/rss-php": "~1.1",
         "symfony/yaml": "~2.7.1",
         "urmaul/rich-types": "0.3.*",
-        "antimattr/xml": "~1.0.0"
+        "antimattr/xml": "~1.0.0",
+        "beberlei/assert": "~2.6"
     },
     "require-dev": {
         "phpunit/phpunit": "~4.0"
