@@ -39,6 +39,7 @@ abstract class Section
         if (!class_exists($class))
             throw new InvalidConfigException('Section does not exist: ' . $class);
         
+        /** @var Section $section */
         $section = new $class();
         foreach ($config as $key => $val) {
             $section->$key = $val;

@@ -2,7 +2,8 @@
 
 namespace rsspipes;
 
-use rich\collections\Strings;
+use Exception;
+use rsspipes\rss\Feed;
 use Symfony\Component\Yaml\Yaml;
 
 class Controller
@@ -19,17 +20,16 @@ class Controller
     
     public function listPipes()
     {
-        return Strings::from(scandir($this->pipesDir))
-            ->diff(['.', '..'])
-            ->filter(function($name) {
-                $extensions = ['yml'];
-                if ($this->allowPhp)
-                    $extensions[] = 'php';
-                return preg_match('~\.(' . implode('|', $extensions) . ')$~', $name);
-            })
-            ->replace('.yml', '')
-            ->replace('.php', '')
-            ->values();
+        $pipes = array_diff(scandir($this->pipesDir), ['.', '..']);
+        $pipes = array_filter($pipes, function(string $name) {
+            $extensions = $this->allowPhp ? ['yml', 'php'] : ['yml'];
+            return preg_match('~\.(' . implode('|', $extensions) . ')$~', $name);
+        });
+        $pipes = array_map(function (string $name) {
+            return preg_replace('~\.(php|yml)$~', '', $name);
+        }, $pipes);
+
+        return array_values($pipes);
     }
     
     /**
@@ -48,7 +48,7 @@ class Controller
             return include ($filename . '.php');
             
         } else {
-            throw new \Exception('Unknown pipe');
+            throw new Exception('Unknown pipe');
         }
     }
     

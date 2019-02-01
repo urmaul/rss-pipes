@@ -2,7 +2,6 @@
 
 namespace rsspipes\sections;
 
-use rsspipes\rss\Feed;
 use rsspipes\rss\Item;
 
 /**

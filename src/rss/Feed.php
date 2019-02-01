@@ -31,7 +31,7 @@ class Feed
         return json_encode($data, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
     }
     
-    public function asXmlElement()
+    private function asXmlElement()
     {
         //$xml = new SimpleXMLElement('<rss/>');
         
