@@ -3,6 +3,7 @@
 namespace rsspipes;
 
 use rsspipes\builder\JsonBuilder;
+use rsspipes\builder\RssBuilder;
 
 abstract class View
 {
@@ -16,16 +17,10 @@ abstract class View
             $feed = $controller->run($_GET['pipe']);
             
             $format = isset($_GET['format']) ? $_GET['format'] : 'rss';
-            if ($format === 'json') {
-                $builder = new JsonBuilder();
-                $contentType = $builder->getContentType();
-                header("Content-Type: $contentType; charset=utf-8");
-                echo $builder->buildFeed($feed);
-                
-            } else {
-                header('Content-Type: application/rss+xml; charset=utf-8');
-                echo $feed->asXml();
-            }
+            $builder = $format === 'json' ? new JsonBuilder() : new RssBuilder();
+            $contentType = $builder->getContentType();
+            header("Content-Type: $contentType; charset=utf-8");
+            echo $builder->buildFeed($feed);
 
         } else {
             $links = array_map(function($name){
