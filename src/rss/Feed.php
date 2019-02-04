@@ -14,23 +14,6 @@ class Feed
      */
     public $items = [];
     
-    /**
-     * Returns feed contents as json string.
-     * @return string
-     */
-    public function asJson()
-    {
-        $data = $this->metadata;
-        
-        $items = [];
-        foreach ($this->items as $item) {
-            $items[] = $item->getData();
-        }
-        $data['items'] = $items;
-        
-        return json_encode($data, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
-    }
-    
     private function asXmlElement()
     {
         //$xml = new SimpleXMLElement('<rss/>');
