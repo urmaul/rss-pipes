@@ -39,35 +39,8 @@ class Item
         }
     }
     
-    /**
-     * 
-     * @param SimpleXMLElement $xml
-     */
-    public function fillXmlElement($xml)
-    {
-        foreach (self::dataAttributes() as $name) {
-            $this->addChild($xml, $name);
-        }
-    }
-    
     public static function dataAttributes()
     {
         return ['guid', 'pubDate', 'title', 'link', 'description', 'comments'];
-    }
-    
-    /**
-     * 
-     * @param SimpleXMLElement $xml
-     * @param string $name
-     */
-    private function addChild($xml, $name)
-    {
-        $child = $xml->addChild($name, $this->$name);
-        
-        if (isset($this->attributes[$name])) {
-            foreach ($this->attributes[$name] as $key => $value) {
-                $child->addAttribute($key, $value);
-            }
-        }
     }
 }
