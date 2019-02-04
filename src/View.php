@@ -2,6 +2,8 @@
 
 namespace rsspipes;
 
+use rsspipes\builder\JsonBuilder;
+
 abstract class View
 {
     public static function run($pipesDir, $allowPhp = false)
@@ -15,8 +17,10 @@ abstract class View
             
             $format = isset($_GET['format']) ? $_GET['format'] : 'rss';
             if ($format === 'json') {
-                header('Content-Type: application/json; charset=utf-8');
-                echo $feed->asJson();
+                $builder = new JsonBuilder();
+                $contentType = $builder->getContentType();
+                header("Content-Type: $contentType; charset=utf-8");
+                echo $builder->buildFeed($feed);
                 
             } else {
                 header('Content-Type: application/rss+xml; charset=utf-8');
