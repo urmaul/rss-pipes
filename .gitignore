@@ -1,4 +1,6 @@
 /nbproject
 /vendor/
 /composer.lock
+/pipes/*
+!/pipes/urmaul.yml
 /.idea
