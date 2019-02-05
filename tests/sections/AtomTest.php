@@ -75,6 +75,8 @@ XML;
         $this->assertSame('Темы для 453', $feed->items[0]->title);
         $this->assertSame('http://www.radio-t.com/p/2015/07/14/prep-453/', $feed->items[0]->link);
         $this->assertSame('http://www.radio-t.com/p/2015/07/14/prep-453', $feed->items[0]->guid);
+        $this->assertSame('Tue, 14 Jul 15 15:45:00 +0000', $feed->items[0]->pubDate);
+        $this->assertArrayNotHasKey('updated', $feed->items[0]->attributes);
         $this->assertSame('Радио-Т 452', $feed->items[1]->title);
         $this->assertSame('http://www.radio-t.com/p/2015/07/11/podcast-452/', $feed->items[1]->link);
         $this->assertSame('http://www.radio-t.com/p/2015/07/11/podcast-452', $feed->items[1]->guid);
@@ -96,5 +98,8 @@ XML;
 <p><a href="http://cdn.radio-t.com/rt_podcast452.mp3">аудио</a> ● <a href="http://chat.radio-t.com/logs/radio-t-452.html">лог чата</a>
 <audio src="http://cdn.radio-t.com/rt_podcast452.mp3" preload="none"></audio></p>
 ', $feed->items[1]->description);
+        $this->assertSame('Tue, 14 Jul 15 15:45:00 +0000', $feed->items[0]->pubDate);
+        $this->assertArrayNotHasKey('updated', $feed->items[0]->attributes);
+
     }
 }
