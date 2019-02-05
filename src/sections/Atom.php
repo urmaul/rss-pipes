@@ -18,7 +18,7 @@ class Atom extends Rss
         }
         $feed->namespaces += $xml->getDocNamespaces();
         
-        $metadata = $this->parseChildrenValues($xml);
+        $metadata = $this->parseChannelMetadata($this->parseChildrenValues($xml));
         unset($metadata['entry']);
         
         $feed->metadata += $metadata;
@@ -30,11 +30,17 @@ class Atom extends Rss
             $item->setData($this->parseChildrenValues($element));
             $item->attributes += $this->parseAllAttributes($element);
 
+            if ($element->updated) {
+                $pubDate = new \DateTimeImmutable((string) $element->updated);
+                $item->pubDate = $pubDate->format(DATE_RFC822);
+                unset($item->attributes['updated']);
+            }
+
             $feed->items[] = $item;
         }
     }
     
-    public function parseChildrenValues($element)
+    protected function parseChildrenValues($element)
     {
         $values = parent::parseChildrenValues($element);
         
@@ -43,5 +49,11 @@ class Atom extends Rss
         }
         
         return $values;
+    }
+
+    private function parseChannelMetadata(array $metadata): array
+    {
+        unset($metadata['id'], $metadata['updated'], $metadata['author']);
+        return $metadata;
     }
 }

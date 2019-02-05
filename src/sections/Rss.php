@@ -51,7 +51,7 @@ class Rss extends Section
         }
     }
     
-    public function parseChildrenValues($element)
+    protected function parseChildrenValues($element)
     {
         $children = (array) $element->children();
         $values = [];
